@@ -1,0 +1,84 @@
+You are a senior full-stack engineer. Build a simple, precise tuition fee PDF generator as a single runnable Replit project that EXACTLY matches the provided sample layout.
+
+TECH STACK (MANDATORY)
+- Backend: Node.js + Express
+- PDF generation: pdfkit
+- Frontend: HTML + CSS + Vanilla JS
+- Storage: In-memory or simple JSON file (no database required)
+
+SYSTEM RULES
+- No login
+- No authentication
+- No WhatsApp, email, or notifications
+- Single-user, local-use system only
+
+CORE FEATURES
+1. Input Form
+   - Student full name
+   - Joining date (Nepali Bikram Sambat: day, month, year)
+   - Monthly tuition fee amount
+
+2. Joining-Date–Based Tuition Logic (CRITICAL)
+   - Tuition period is calculated as:
+     FROM = joining date (BS)
+     TO   = same Nepali day of the NEXT Nepali month
+   - Example:
+     Joining date: 5 Shrawan 2081
+     Tuition period shown in PDF:
+     “from 5 Shrawan 2081 to 5 Bhadra 2081”
+   - Handle Nepali month rollover correctly.
+
+3. PDF Generation
+   - Button: “Generate PDF”
+   - On click:
+     - Generate and auto-download a PDF
+     - Filename format:
+       Tuition_Fee_<StudentName>_<FromMonth>-<ToMonth>.pdf
+
+4. PDF LAYOUT (MUST MATCH SAMPLE EXACTLY)
+   - Page size: A4
+   - Title (centered, bold): TUTION FEE REMINDER
+   - Left aligned:
+     - Date Issued: (auto – today)
+     - Issued By: Bablu Rauniyar
+   - Right aligned:
+     - Contact Info:
+       misubabul@gmail.com
+       +977-9804028522
+   - Main body text:
+     “I hereby request you to pay the tuition fee of Master/Miss <Student Name>
+      from <FROM DATE> to <TO DATE>.
+      Amount: <FEE> Kindly make the payment on time.”
+   - Quote (centered):
+     “Keep learning, keep growing.”
+   - Payment Info section:
+     - Citizen Bank International LTD.
+     - Account No: 09301000009700
+     - Account Name: Bablu Kumar Rauniyar
+   - Esewa ID: 9804028522
+   - QR codes (bank + Esewa) embedded as images
+   - Signature image at bottom-right
+   - “THANK YOU” text near footer
+
+PROJECT STRUCTURE (REQUIRED)
+- /server
+    index.js
+    pdfGenerator.js
+    nepaliDate.js
+- /public
+    index.html
+    styles.css
+    script.js
+- /assets
+    signature.png
+    bank_qr.png
+    esewa_qr.png
+- README.md
+
+DELIVERY RULES
+- Generate full, runnable code (no partial snippets)
+- No explanations or theory
+- Use pdfkit only (no HTML-to-PDF)
+- App must run with:
+  npm install
+  npm start
