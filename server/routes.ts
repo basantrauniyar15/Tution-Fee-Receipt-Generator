@@ -4,6 +4,7 @@ import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
 import { generatePdf } from "./lib/pdf-generator";
+import { generateImage } from "./lib/image-generator";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -17,23 +18,23 @@ export async function registerRoutes(
       // Log for debugging/history (optional)
       await storage.logReceipt(input);
 
+      // Image generation is handled on the frontend now to avoid native dependency issues
       const pdfBuffer = await generatePdf(input);
-
       const filename = `Tuition_Fee_${input.studentName.replace(/\s+/g, '_')}_${input.year}-${input.month}.pdf`;
 
       res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader('Content-Disposition', `attachment; filename=${filename}`);
+      res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
       res.send(pdfBuffer);
 
     } catch (err) {
-      console.error('PDF Generation Error:', err);
+      console.error('Generation Error:', err);
       if (err instanceof z.ZodError) {
         return res.status(400).json({
           message: err.errors[0].message,
           field: err.errors[0].path.join('.'),
         });
       }
-      res.status(500).json({ message: "Failed to generate PDF" });
+      res.status(500).json({ message: "Failed to generate receipt" });
     }
   });
 

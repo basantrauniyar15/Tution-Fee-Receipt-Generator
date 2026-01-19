@@ -9,6 +9,7 @@ export const receipts = pgTable("receipts", {
   month: integer("month").notNull(),
   day: integer("day").notNull(),
   fee: integer("fee").notNull(),
+  format: text("format").notNull().default("pdf"),
   generatedAt: text("generated_at").notNull(),
 });
 
@@ -18,6 +19,7 @@ export const insertReceiptSchema = createInsertSchema(receipts).pick({
   month: true,
   day: true,
   fee: true,
+  format: true,
 });
 
 export const generatePdfSchema = insertReceiptSchema;
