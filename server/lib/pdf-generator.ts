@@ -3,6 +3,9 @@ import QRCode from 'qrcode';
 import { type InsertReceipt } from '@shared/schema';
 import { getTuitionPeriod } from './nepali-date';
 
+import path from 'path';
+import fs from 'fs';
+
 export async function generatePdf(data: InsertReceipt): Promise<Buffer> {
   return new Promise(async (resolve, reject) => {
     try {
@@ -12,13 +15,13 @@ export async function generatePdf(data: InsertReceipt): Promise<Buffer> {
       doc.on('data', buffers.push.bind(buffers));
       doc.on('end', () => resolve(Buffer.concat(buffers)));
 
-      // --- ASSETS GENERATION ---
-      // Generate QR Codes
-      const bankQrBuffer = await QRCode.toBuffer('09301000009700'); // Bank Account
-      const esewaQrBuffer = await QRCode.toBuffer('9804028522');     // Esewa ID
+      // --- ASSETS ---
+      const assetsDir = path.join(process.cwd(), 'client', 'public', 'assets');
+      const bankQrPath = path.join(assetsDir, 'bank_qr.jpg');
+      const esewaQrPath = path.join(assetsDir, 'esewa_qr.jpg');
+      const signaturePath = path.join(assetsDir, 'signature.png');
 
       // --- LAYOUT ---
-
       // 1. Title
       doc.font('Helvetica-Bold').fontSize(20).text('TUITION FEE REMINDER', { align: 'center' });
       doc.moveDown(1.5);
@@ -28,7 +31,7 @@ export async function generatePdf(data: InsertReceipt): Promise<Buffer> {
       
       // Left: Date Issued, Issued By
       doc.fontSize(10).font('Helvetica');
-      doc.text(`Date Issued: ${new Date().toISOString().split('T')[0]}`); // Simple YYYY-MM-DD
+      doc.text(`Date Issued: ${new Date().toISOString().split('T')[0]}`);
       doc.text('Issued By: Bablu Rauniyar');
 
       // Right: Contact Info
@@ -70,19 +73,23 @@ export async function generatePdf(data: InsertReceipt): Promise<Buffer> {
 
       // 6. QR Codes
       const qrY = doc.y;
+      
       // Bank QR
-      doc.image(bankQrBuffer, 50, qrY, { fit: [100, 100] });
-      doc.text('Bank QR', 50, qrY + 105, { width: 100, align: 'center' });
+      if (fs.existsSync(bankQrPath)) {
+        doc.image(bankQrPath, 50, qrY, { fit: [120, 120] });
+      }
+      doc.text('Bank QR', 50, qrY + 125, { width: 120, align: 'center' });
 
       // Esewa QR
-      doc.image(esewaQrBuffer, 180, qrY, { fit: [100, 100] });
-      doc.text('Esewa QR', 180, qrY + 105, { width: 100, align: 'center' });
+      if (fs.existsSync(esewaQrPath)) {
+        doc.image(esewaQrPath, 200, qrY, { fit: [120, 120] });
+      }
+      doc.text('Esewa QR', 200, qrY + 125, { width: 120, align: 'center' });
 
       // 7. Signature
-      // Since we don't have an image, we'll use a script-like font or just text "Signed"
-      // Standard fonts in PDFKit: Courier, Helvetica, Times, Symbol, ZapfDingbats.
-      // None are script. We'll simulate a signature with Italic.
-      
+      if (fs.existsSync(signaturePath)) {
+        doc.image(signaturePath, 400, qrY + 20, { fit: [100, 50] });
+      }
       doc.fontSize(12).font('Times-Italic');
       doc.text('Bablu Rauniyar', 400, qrY + 80, { align: 'right' });
       doc.fontSize(10).font('Helvetica').text('Signature', 400, qrY + 95, { align: 'right' });
