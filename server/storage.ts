@@ -1,37 +1,23 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { type Receipt, type InsertReceipt } from "@shared/schema";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  // We strictly don't need persistent storage as per requirements, 
+  // but we'll keep the interface for future extensibility.
+  logReceipt(receipt: InsertReceipt): Promise<Receipt>;
 }
 
 export class MemStorage implements IStorage {
-  private users: Map<string, User>;
+  private receipts: Receipt[] = [];
+  private idCounter = 1;
 
-  constructor() {
-    this.users = new Map();
-  }
-
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
-  }
-
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async logReceipt(insertReceipt: InsertReceipt): Promise<Receipt> {
+    const receipt: Receipt = {
+      ...insertReceipt,
+      id: this.idCounter++,
+      generatedAt: new Date().toISOString()
+    };
+    this.receipts.push(receipt);
+    return receipt;
   }
 }
 
