@@ -130,7 +130,8 @@ export function ReceiptForm() {
                   <div className="relative">
                     <img src="/assets/signature.png" className="w-48 h-24 object-contain" />
                   </div>
-                  <p className="text-sm border-t border-black pt-1 w-32 text-center">Signature</p>
+                  <p className="text-sm border-t border-black pt-1 w-32 text-center">Bablu Rauniyar</p>
+                  <p className="text-xs text-center uppercase tracking-wider text-muted-foreground mt-1">Signature</p>
                 </div>
               </div>
             </div>
@@ -174,7 +175,7 @@ export function ReceiptForm() {
                       </FormLabel>
                       <FormControl>
                         <Input 
-                          placeholder="e.g. Aarav Sharma" 
+                          placeholder="e.g. Basant Rauniyar" 
                           className="glass-input h-12 rounded-xl text-base px-4" 
                           {...field} 
                         />
