@@ -90,9 +90,7 @@ export async function generatePdf(data: InsertReceipt): Promise<Buffer> {
       if (fs.existsSync(signaturePath)) {
         doc.image(signaturePath, 400, qrY + 20, { fit: [100, 50] });
       }
-      doc.fontSize(12).font('Times-Italic');
-      doc.text('Bablu Rauniyar', 400, qrY + 80, { align: 'right' });
-      doc.fontSize(10).font('Helvetica').text('Signature', 400, qrY + 95, { align: 'right' });
+      doc.fontSize(10).font('Helvetica').text('Signature', 400, qrY + 80, { align: 'right' });
 
       // 8. Footer
       doc.moveDown(4);

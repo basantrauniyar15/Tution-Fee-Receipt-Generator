@@ -127,8 +127,7 @@ export function ReceiptForm() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <img src="/assets/signature.png" className="w-32 h-16 ml-auto mb-2" />
-                  <p className="text-xl font-serif italic">Bablu Rauniyar</p>
+                  <img src="/assets/signature.png" className="w-32 h-16 ml-auto" />
                   <p className="text-sm border-t border-black pt-1">Signature</p>
                 </div>
               </div>
