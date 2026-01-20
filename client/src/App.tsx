@@ -19,8 +19,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Router />
+        <div className="min-h-screen bg-background text-foreground font-sans antialiased selection:bg-primary/20">
+          <main className="container mx-auto py-8 sm:py-16">
+            <Router />
+          </main>
+          <Toaster />
+        </div>
       </TooltipProvider>
     </QueryClientProvider>
   );
