@@ -126,9 +126,11 @@ export function ReceiptForm() {
                     <p className="text-sm mt-2">Esewa QR</p>
                   </div>
                 </div>
-                <div className="text-right">
-                  <img src="/assets/signature.png" className="w-32 h-16 ml-auto" />
-                  <p className="text-sm border-t border-black pt-1">Signature</p>
+                <div className="text-right flex flex-col items-center">
+                  <div className="relative">
+                    <img src="/assets/signature.png" className="w-48 h-24 object-contain" />
+                  </div>
+                  <p className="text-sm border-t border-black pt-1 w-32 text-center">Signature</p>
                 </div>
               </div>
             </div>

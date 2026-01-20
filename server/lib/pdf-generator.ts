@@ -88,9 +88,11 @@ export async function generatePdf(data: InsertReceipt): Promise<Buffer> {
 
       // 7. Signature
       if (fs.existsSync(signaturePath)) {
-        doc.image(signaturePath, 400, qrY + 20, { fit: [100, 50] });
+        doc.image(signaturePath, 420, qrY + 10, { fit: [140, 70] });
       }
-      doc.fontSize(10).font('Helvetica').text('Signature', 400, qrY + 80, { align: 'right' });
+      doc.fontSize(10).font('Helvetica').text('Signature', 420, qrY + 85, { width: 140, align: 'center' });
+      // Draw line manually for signature
+      doc.moveTo(420, qrY + 82).lineTo(560, qrY + 82).stroke();
 
       // 8. Footer
       doc.moveDown(4);
