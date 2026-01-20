@@ -64,7 +64,7 @@ export async function generatePdf(data: InsertReceipt): Promise<Buffer> {
       
       doc.fontSize(10).font('Helvetica');
       doc.text('Citizen Bank International LTD.');
-      doc.text('Account No: 09301000009700');
+      doc.text('Account No: 0930100000097010');
       doc.text('Account Name: Bablu Kumar Rauniyar');
       doc.moveDown(0.5);
       doc.text('Esewa ID: 9804028522');

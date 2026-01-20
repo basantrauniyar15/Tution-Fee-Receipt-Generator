@@ -111,7 +111,7 @@ export function ReceiptForm() {
             <div className="mt-auto">
               <h3 className="text-xl font-bold underline mb-4">Payment Info:</h3>
               <p>Citizen Bank International LTD.</p>
-              <p>Account No: 09301000009700</p>
+              <p>Account No: 0930100000097010</p>
               <p>Account Name: Bablu Kumar Rauniyar</p>
               <p className="mt-4 font-bold">Esewa ID: 9804028522</p>
 
