@@ -227,13 +227,13 @@ export function ReceiptForm() {
                                 <SelectValue placeholder="Select month" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="max-h-[500px] w-[300px]">
-                              <div className="grid grid-cols-2 gap-2 p-3">
+                            <SelectContent className="max-h-[500px] w-[300px] bg-popover shadow-xl border-2">
+                              <div className="grid grid-cols-2 gap-2 p-3 bg-popover">
                                 {MONTHS.map((month, index) => (
                                   <SelectItem 
                                     key={index + 1} 
                                     value={(index + 1).toString()}
-                                    className="cursor-pointer hover:bg-accent rounded-lg justify-center py-2 px-1 focus:bg-accent"
+                                    className="cursor-pointer hover:bg-accent rounded-lg justify-center py-2 px-1 focus:bg-accent data-[state=checked]:bg-primary/10"
                                   >
                                     {month}
                                   </SelectItem>
