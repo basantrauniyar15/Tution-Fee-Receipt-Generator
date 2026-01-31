@@ -227,8 +227,8 @@ export function ReceiptForm() {
                                 <SelectValue placeholder="Select month" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent className="max-h-[500px] w-[300px] bg-popover shadow-xl border-2">
-                              <div className="grid grid-cols-2 gap-2 p-3 bg-popover">
+                            <SelectContent className="max-h-[500px] w-[300px] !bg-white !opacity-100 shadow-xl border-2 z-[9999]">
+                              <div className="grid grid-cols-2 gap-2 p-3 !bg-white !opacity-100">
                                 {MONTHS.map((month, index) => (
                                   <SelectItem 
                                     key={index + 1} 
