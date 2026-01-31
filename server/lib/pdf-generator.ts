@@ -35,7 +35,7 @@ export async function generatePdf(data: InsertReceipt): Promise<Buffer> {
       doc.text('Issued By: Bablu Rauniyar');
 
       // Right: Contact Info
-      doc.text('misubabul@gmail.com', 400, startY, { align: 'right' });
+      doc.text('misubablu1@gmail.com', 400, startY, { align: 'right' });
       doc.text('+977-9804028522', 400, doc.y, { align: 'right' });
 
       doc.moveDown(2);

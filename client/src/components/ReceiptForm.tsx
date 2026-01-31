@@ -40,7 +40,7 @@ export function ReceiptForm() {
     resolver: zodResolver(insertReceiptSchema),
     defaultValues: {
       studentName: "",
-      year: 2081,
+      year: 2082,
       month: 1,
       day: 1,
       fee: 0,
@@ -95,7 +95,7 @@ export function ReceiptForm() {
                 <p>Issued By: Bablu Rauniyar</p>
               </div>
               <div className="text-right">
-                <p>misubabul@gmail.com</p>
+                <p>misubablu1@gmail.com</p>
                 <p>+977-9804028522</p>
               </div>
             </div>
