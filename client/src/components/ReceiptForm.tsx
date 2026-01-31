@@ -227,12 +227,18 @@ export function ReceiptForm() {
                                 <SelectValue placeholder="Select month" />
                               </SelectTrigger>
                             </FormControl>
-                            <SelectContent>
-                              {MONTHS.map((month, index) => (
-                                <SelectItem key={index + 1} value={(index + 1).toString()}>
-                                  {month}
-                                </SelectItem>
-                              ))}
+                            <SelectContent className="max-h-[500px] w-[300px]">
+                              <div className="grid grid-cols-2 gap-2 p-3">
+                                {MONTHS.map((month, index) => (
+                                  <SelectItem 
+                                    key={index + 1} 
+                                    value={(index + 1).toString()}
+                                    className="cursor-pointer hover:bg-accent rounded-lg justify-center py-2 px-1 focus:bg-accent"
+                                  >
+                                    {month}
+                                  </SelectItem>
+                                ))}
+                              </div>
                             </SelectContent>
                           </Select>
                           <FormMessage />
